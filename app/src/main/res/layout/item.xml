@@ -8,6 +8,7 @@
     <androidx.cardview.widget.CardView
         android:elevation="4dp"
         app:cardCornerRadius="3dp"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -41,7 +42,7 @@
                 android:id="@+id/mosttv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="64dp"
                 android:text="TextView"
                 app:layout_constraintBottom_toBottomOf="@+id/nametv"
                 app:layout_constraintStart_toEndOf="@+id/nametv"
