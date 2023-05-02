@@ -12,6 +12,8 @@ class MyAdapter(val context:Context,val nameList:MutableList<DataModel>):Recycle
 
     inner class MyViewHolder(itemView:View):ViewHolder(itemView){
         val tv = itemView.findViewById<TextView>(R.id.nametv)
+        val highTv = itemView.findViewById<TextView>(R.id.hightv)
+        val lowTv = itemView.findViewById<TextView>(R.id.lowtv)
 
     }
 
@@ -23,6 +25,8 @@ class MyAdapter(val context:Context,val nameList:MutableList<DataModel>):Recycle
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.tv.text = nameList[position].name_en
+        holder.highTv.text = nameList[position].daily_high_price.toString()
+        holder.lowTv.text = nameList[position].daily_low_price.toString()
     }
 
     override fun getItemCount(): Int {

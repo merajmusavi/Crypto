@@ -35,10 +35,12 @@ class GetDataActivity : AppCompatActivity() {
              for(i in 0..13){
                  val option = jsonArray.getJSONObject(i)
                  val name = option.getString("name_en")
+                 val daily_high_price = option.getDouble("daily_high_price")
+                 val daily_low_price = option.getDouble("daily_low_price")
 
                  runOnUiThread {
 
-                     nameList.add(DataModel("",name,"","",""))
+                     nameList.add(DataModel("",name,daily_high_price,daily_low_price,""))
                      binding.rec.adapter = MyAdapter(this@GetDataActivity,nameList)
 
 
