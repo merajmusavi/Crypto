@@ -16,6 +16,41 @@ class PredictActiviy : AppCompatActivity() {
         setContentView(R.layout.activity_predict_activiy)
         val historicalData = mutableListOf<Double>()
         val nextCost = 175.0
+        var nameList = mutableListOf<DataModel>()
+        val client1 = OkHttpClient()
+        val request1 = Request.Builder().url("https://api.wallex.ir/v1/currencies/stats").build()
+        client1.newCall(request1).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val x  = response.body!!.string()
+                val jsonObject = JSONObject(x)
+                val jsonArray = jsonObject.getJSONArray("result")
+                    val option = jsonArray.getJSONObject(0)
+                    val name = option.getString("name_en")
+                    val daily_high_price = option.getDouble("daily_high_price")
+                    val daily_low_price = option.getDouble("daily_low_price")
+
+                    runOnUiThread {
+
+
+
+
+                    }
+
+
+
+
+
+
+
+
+            }
+
+
+        })
 
         val client = OkHttpClient()
         var numResponsesReceived = 0
