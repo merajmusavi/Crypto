@@ -77,11 +77,7 @@ class PredictActiviy : AppCompatActivity() {
                         }
                         val predictedCost = regression.predict(historicalData.size.toDouble())
                         runOnUiThread {
-                            Toast.makeText(
-                                this@PredictActiviy,
-                                predictedCost.toString(),
-                                Toast.LENGTH_SHORT
-                            ).show()
+                  binding.predict.text = predictedCost.toString()
                         }
                     }
                 }
