@@ -17,12 +17,9 @@ class GetDataActivity : AppCompatActivity() {
         binding = ActivityGetDataBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val name = arrayOf("meraj","ahmad")
-        var nameList = mutableListOf<String>()
-        nameList.add("omid")
-        nameList.add("omid")
-        nameList.add("omid")
+        var nameList = mutableListOf<DataModel>()
+
         binding.rec.layoutManager = LinearLayoutManager(this)
-        binding.rec.adapter = MyAdapter(this,name)
             val client = OkHttpClient()
             val request = Request.Builder().url("https://api.wallex.ir/v1/currencies/stats").build()
             client.newCall(request).enqueue(object : Callback {
@@ -35,18 +32,30 @@ class GetDataActivity : AppCompatActivity() {
                     val jsonObject = JSONObject(x)
                     val jsonArray = jsonObject.getJSONArray("result")
 
+             for(i in 0..13){
+                 val option = jsonArray.getJSONObject(i)
+                 val name = option.getString("name_en")
 
-                    for (i in 0..10){
-                        val option = jsonArray.getJSONObject(i)
-                        val name = option.getString("name")
+                 runOnUiThread {
+
+                     nameList.add(DataModel("",name,"","",""))
+                     binding.rec.adapter = MyAdapter(this@GetDataActivity,nameList)
 
 
-                    }
+                 }
+             }
+
+
+
+
 
 
 
                 }
 
+
             })
-        }
+
+
+    }
     }

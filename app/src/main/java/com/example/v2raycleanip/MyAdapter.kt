@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
-class MyAdapter(val context:Context,val nameList:MutableList<String>):RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+class MyAdapter(val context:Context,val nameList:MutableList<DataModel>):RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(itemView:View):ViewHolder(itemView){
         val tv = itemView.findViewById<TextView>(R.id.nametv)
@@ -22,7 +22,7 @@ class MyAdapter(val context:Context,val nameList:MutableList<String>):RecyclerVi
         }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.tv.text = nameList[position]
+        holder.tv.text = nameList[position].name_en
     }
 
     override fun getItemCount(): Int {
