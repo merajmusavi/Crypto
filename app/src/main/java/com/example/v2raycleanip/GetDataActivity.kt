@@ -1,5 +1,6 @@
 package com.example.v2raycleanip
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.v2raycleanip.databinding.ActivityGetDataBinding
 import okhttp3.*
+import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
 
@@ -18,7 +20,10 @@ class GetDataActivity : AppCompatActivity() {
         setContentView(binding.root)
         val name = arrayOf("meraj","ahmad")
         var nameList = mutableListOf<DataModel>()
-
+binding.predictBtn.setOnClickListener {
+    var intent = Intent(this,PredictActiviy::class.java)
+    startActivity(intent)
+}
         binding.rec.layoutManager = LinearLayoutManager(this)
             val client = OkHttpClient()
             val request = Request.Builder().url("https://api.wallex.ir/v1/currencies/stats").build()
@@ -31,7 +36,6 @@ class GetDataActivity : AppCompatActivity() {
                     val x  = response.body!!.string()
                     val jsonObject = JSONObject(x)
                     val jsonArray = jsonObject.getJSONArray("result")
-
              for(i in 0..13){
                  val option = jsonArray.getJSONObject(i)
                  val name = option.getString("name_en")
